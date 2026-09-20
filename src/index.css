@@ -1,58 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 :root {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: #e2e8f0;
-  background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 30%),
-    #020817;
-
+  --bg: #071017;
+  --surface: #0b1821;
+  --surface-raised: #10232d;
+  --text: #edf9fb;
+  --text-soft: #c9e1e5;
+  --muted: #8eaab0;
+  --line: rgba(158, 197, 204, .16);
+  --line-strong: rgba(158, 197, 204, .34);
+  --cyan: #64e6ed;
+  --violet: #b5a3ff;
+  --green: #8be3ad;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
+:root[data-theme='light'] {
+  --bg: #f4f8f7;
+  --surface: #ffffff;
+  --surface-raised: #eaf3f2;
+  --text: #102329;
+  --text-soft: #36525a;
+  --muted: #5d7378;
+  --line: rgba(18, 52, 59, .14);
+  --line-strong: rgba(18, 52, 59, .3);
+  --cyan: #057b88;
+  --violet: #6856b6;
+  --green: #198a53;
+  color-scheme: light;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: #020817;
-  color: #e2e8f0;
-}
-
-a {
-  color: inherit;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-:focus-visible {
-  outline: 2px solid #7dd3fc;
-  outline-offset: 3px;
-}
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--bg); color: var(--text); }
+body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .45; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to bottom, black, transparent 60%); }
+a { color: inherit; }
+button, a { font: inherit; }
+#root { min-height: 100vh; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }

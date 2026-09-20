@@ -1,261 +1,107 @@
+import { useEffect, useState } from 'react'
+import { ArrowUpRight, BriefcaseBusiness, GitBranch, Mail, MapPin } from 'lucide-react'
 import './App.css'
+import { HeroVisual } from './components/HeroVisual'
+import { Navbar } from './components/Navbar'
+import { ProjectCard } from './components/ProjectCard'
+import { ProjectModal } from './components/ProjectModal'
+import { ResearchAreas } from './components/ResearchAreas'
+import { ScrollProgress } from './components/ScrollProgress'
+import { Timeline } from './components/Timeline'
+import { Workflow } from './components/Workflow'
+import { projects } from './data/projects'
+import { researchAreas } from './data/research'
+import type { Project } from './data/types'
+import { skillGroups } from './data/experience'
 
-const navigation = [
-  { label: 'About', href: '#about' },
-  { label: 'Research', href: '#research' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Publications', href: '#publications' },
-  { label: 'Contact', href: '#contact' },
-]
-
-const stats = [
-  { value: '6+', label: 'years of research' },
-  { value: '12+', label: 'systems built' },
-  { value: '4', label: 'core focus areas' },
-  { value: '100%', label: 'research-first mindset' },
-]
-
-const researchAreas = [
-  'Computer vision for perception and scene understanding',
-  'Robotics and autonomous systems with real-world deployment focus',
-  '3D reconstruction, SLAM, and spatiotemporal modeling',
-  'Machine learning methods for robust, explainable sensing systems',
-]
-
-const projects = [
-  {
-    title: 'Autonomous Visual Navigation Stack',
-    summary:
-      'Designed a perception-driven navigation pipeline that fuses visual odometry, semantic landmarks, and motion planning to improve robustness in dynamic indoor and outdoor environments.',
-    tags: ['Computer Vision', 'Robotics', 'SLAM'],
-  },
-  {
-    title: '3D Scene Reconstruction for Robotics',
-    summary:
-      'Built systems for dense 3D mapping and point-cloud alignment, enabling more accurate environmental awareness in constrained and changing scenes.',
-    tags: ['3D Vision', 'Mapping', 'Reconstruction'],
-  },
-  {
-    title: 'Real-Time Detection and Tracking',
-    summary:
-      'Developed efficient detection and tracking pipelines for high-speed perception tasks, balancing latency and accuracy for embedded and field robots.',
-    tags: ['Deep Learning', 'Tracking', 'Efficiency'],
-  },
-]
-
-const publications = [
-  {
-    title: 'Robust Visual Perception for Autonomous Navigation',
-    venue: 'International Conference on Robotics and Automation',
-    detail: 'Explored resilient perception strategies for uncertain and cluttered environments.',
-  },
-  {
-    title: 'Semantic Scene Understanding in Dynamic Environments',
-    venue: 'Computer Vision and Pattern Recognition Workshop',
-    detail: 'Introduced a hybrid pipeline combining geometry, semantics, and temporal consistency.',
-  },
-]
-
-const experience = [
-  {
-    title: 'Computer Vision and Robotics Researcher',
-    meta: 'Independent / Academic Research',
-    details:
-      'Focused on perception systems, autonomous decision-making, and experimental validation across real robotic platforms.',
-  },
-  {
-    title: 'Robotics and AI Enthusiast',
-    meta: 'Problem solving and prototyping',
-    details:
-      'Translates research into deployable systems, integrating sensing, learning, and control with a practical engineering lens.',
-  },
-]
-
-const links = [
-  { label: 'Email', href: 'mailto:omkar.mayekar.1@gmail.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/omkar-mayekar/' },
-  { label: 'GitHub', href: 'https://github.com/OmkarMayekar' },
-  { label: 'CV', href: '/Omkar_Mayekar_CV.pdf' },
-]
+const profile = {
+  email: 'omayeka@clemson.edu',
+  linkedin: 'https://www.linkedin.com/in/omkar-mayekar-b28628202/',
+  github: 'https://github.com/omkar55-bot',
+  cv: './Omkar_Mayekar_CV.pdf',
+}
 
 function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    const stored = localStorage.getItem('omkar-theme')
+    return stored === 'light' ? 'light' : 'dark'
+  })
+  const [activeProject, setActiveProject] = useState<Project | null>(null)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    localStorage.setItem('omkar-theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme((current) => current === 'dark' ? 'light' : 'dark')
+  const caseStudyProject = projects.find((project) => project.id === '3dgs-low-resolution')
+
   return (
-    <div className="page-shell">
-      <header className="site-header">
-        <div className="brand-wrap">
-          <span className="brand-mark">OM</span>
-          <div>
-            <p className="eyebrow">Computer Vision & Robotics</p>
-            <a href="#top" className="brand-name">
-              Omkar Sharad Mayekar
-            </a>
-          </div>
-        </div>
+    <div className="app-shell" id="top">
+      <ScrollProgress />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
-        <nav className="main-nav" aria-label="Main navigation">
-          {navigation.map((item) => (
-            <a key={item.label} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </header>
-
-      <main id="top">
-        <section className="hero section">
+      <main>
+        <section className="hero section-wrap" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow accent">Researching intelligent robotic perception</p>
-            <h1>Building systems that help machines see, understand, and act.</h1>
-            <p className="lede">
-              I’m Omkar Sharad Mayekar, a Computer Vision and Robotics researcher focused
-              on perception, 3D understanding, and autonomous systems that are grounded in
-              real-world deployment.
-            </p>
-
-            <div className="cta-row">
-              <a className="button primary" href="#projects">
-                View Projects
-              </a>
-              <a className="button secondary" href="/Omkar_Mayekar_CV.pdf" target="_blank" rel="noreferrer">
-                Download CV
-              </a>
+            <p className="status-pill"><span className="status-dot" /> Computer Vision · 3D Reconstruction · Robotics</p>
+            <p className="eyebrow">Researching visual intelligence for embodied systems</p>
+            <h1 id="hero-title">Building Visual Intelligence for <em>3D Worlds</em> and Robots</h1>
+            <p className="hero-lede">I am Omkar Mayekar, a computer vision and robotics researcher working on 3D reconstruction, neural rendering, view synthesis, and spatial reasoning for intelligent robots.</p>
+            <div className="hero-actions">
+              <a className="button primary" href="#research">View research <ArrowUpRight size={16} /></a>
+              <a className="button secondary" href={profile.cv} download>Download CV</a>
             </div>
-
-            <ul className="social-row" aria-label="External profile links">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined}>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <aside className="hero-panel" aria-label="Research summary">
-            <div className="panel-card">
-              <p className="panel-label">Focus areas</p>
-              <ul>
-                {researchAreas.map((area) => (
-                  <li key={area}>{area}</li>
-                ))}
-              </ul>
+            <div className="hero-links" aria-label="Profile links">
+              <a href={profile.github} target="_blank" rel="noreferrer"><GitBranch size={16} /> GitHub</a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer"><BriefcaseBusiness size={16} /> LinkedIn</a>
+              <a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a>
             </div>
-          </aside>
-        </section>
-
-        <section className="stats-grid" aria-label="Key metrics and highlights">
-          {stats.map((stat) => (
-            <article key={stat.label} className="stat-card">
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </article>
-          ))}
-        </section>
-
-        <section id="about" className="section two-column">
-          <div>
-            <p className="section-kicker">About</p>
-            <h2>Researcher with a systems mindset.</h2>
           </div>
-          <div>
-            <p>
-              My work sits at the intersection of perception, autonomy, and intelligent
-              motion. I enjoy designing algorithms and architectures that push beyond
-              benchmarks toward deployable performance in real environments, where sensor
-              noise, uncertainty, and dynamic conditions matter as much as accuracy.
-            </p>
-            <p>
-              I’m motivated by the challenge of building machine understanding that supports
-              safe decision-making, from visual scene reasoning to navigation and control.
-            </p>
-          </div>
+          <HeroVisual />
         </section>
 
-        <section id="research" className="section">
-          <p className="section-kicker">Research</p>
-          <h2>Core interests</h2>
-          <div className="feature-grid">
-            {researchAreas.map((area) => (
-              <article key={area} className="feature-card">
-                <span className="bullet" aria-hidden="true" />
-                <p>{area}</p>
-              </article>
-            ))}
-          </div>
+        <section id="about" className="section-wrap about-section" aria-labelledby="about-title">
+          <div className="section-heading"><p className="eyebrow">01 / About</p><h2 id="about-title">Research-driven engineering for uncertain worlds.</h2></div>
+          <div className="about-copy"><p>Omkar Mayekar is a computer vision and robotics researcher with experience in neural rendering, 3D scene understanding, view synthesis, robot manipulation, and vision-language-action systems. His work focuses on making visual intelligence more reliable in real-world environments, especially when images are low-resolution, geometry is uncertain, or robots must reason about spatial relationships.</p><p>He focuses on the entire research loop: building complete experimental pipelines, benchmarking methods on real-world and synthetic datasets, studying failure cases, and connecting computer vision research to robot action and manipulation.</p><div className="location-line"><MapPin size={16} /> Clemson, South Carolina, USA</div></div>
         </section>
 
-        <section id="projects" className="section">
-          <p className="section-kicker">Selected work</p>
-          <h2>Applied research and engineering projects</h2>
+        <section id="research" className="section-wrap" aria-labelledby="research-title">
+          <div className="section-heading split-heading"><div><p className="eyebrow">02 / Research areas</p><h2 id="research-title">A lab notebook for visual intelligence.</h2></div><p>From pixels to geometry to action, my interests follow the information a robot needs to understand its world.</p></div>
+          <ResearchAreas areas={researchAreas} />
+        </section>
+
+        <section id="projects" className="section-wrap" aria-labelledby="projects-title">
+          <div className="section-heading split-heading"><div><p className="eyebrow">03 / Selected work</p><h2 id="projects-title">Research projects with receipts.</h2></div><p>Experiments, systems, and investigations grounded in the supplied project records and benchmark details.</p></div>
           <div className="project-grid">
-            {projects.map((project) => (
-              <article key={project.title} className="project-card">
-                <div className="project-topline">
-                  <span className="tag">Research</span>
-                  <span className="tag muted">Prototype</span>
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <ul className="chip-list" aria-label={`${project.title} topics`}>
-                  {project.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            {projects.map((project) => <ProjectCard key={project.id} project={project} onCaseStudy={project.id === '3dgs-low-resolution' ? () => setActiveProject(project) : undefined} />)}
+            <article className="project-card placeholder-card"><p className="section-kicker">Open slot</p><h3>More research projects will be added soon.</h3><p>A flexible project surface is ready for future work from GitHub.</p></article>
           </div>
         </section>
 
-        <section id="publications" className="section">
-          <p className="section-kicker">Publications</p>
-          <h2>Research contributions</h2>
-          <div className="publication-list">
-            {publications.map((item) => (
-              <article key={item.title} className="publication-item">
-                <h3>{item.title}</h3>
-                <p className="venue">{item.venue}</p>
-                <p>{item.detail}</p>
-              </article>
-            ))}
-          </div>
+        <section id="experience" className="section-wrap" aria-labelledby="experience-title">
+          <div className="section-heading"><p className="eyebrow">04 / Experience & education</p><h2 id="experience-title">A research practice that stays close to the machine.</h2></div>
+          <Timeline />
         </section>
 
-        <section className="section two-column experience-block">
-          <div>
-            <p className="section-kicker">Experience</p>
-            <h2>Research and applied problem solving</h2>
-          </div>
-          <div className="experience-list">
-            {experience.map((item) => (
-              <article key={item.title} className="experience-item">
-                <h3>{item.title}</h3>
-                <p className="meta">{item.meta}</p>
-                <p>{item.details}</p>
-              </article>
-            ))}
-          </div>
+        <section id="skills" className="section-wrap" aria-labelledby="skills-title">
+          <div className="section-heading split-heading"><div><p className="eyebrow">05 / Skills</p><h2 id="skills-title">Tools for the whole loop.</h2></div><p>No unsupported proficiency scores; just the methods and infrastructure used across the work.</p></div>
+          <div className="skills-grid">{skillGroups.map((group) => <article className="skill-group" key={group.title}><h3>{group.title}</h3><ul className="chip-list">{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul></article>)}</div>
+        </section>
+
+        <section className="section-wrap workflow-section" aria-labelledby="workflow-title">
+          <div className="section-heading"><p className="eyebrow">06 / Research workflow</p><h2 id="workflow-title">From question to useful action.</h2><p className="workflow-intro">I focus on the entire research loop: understanding the failure mode, implementing a reliable experimental pipeline, measuring performance, studying qualitative behavior, and translating visual understanding into useful robotic action.</p></div>
+          <Workflow />
+        </section>
+
+        <section id="contact" className="contact-section section-wrap" aria-labelledby="contact-title">
+          <div><p className="eyebrow">07 / Contact</p><h2 id="contact-title">Let’s build better visual intelligence.</h2><p>I am interested in research and engineering opportunities in computer vision, 3D reconstruction, neural rendering, robotics, and vision-language-action systems.</p></div>
+          <div className="contact-actions"><a className="button primary" href={`mailto:${profile.email}`}><Mail size={16} /> Email me</a><a className="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer"><BriefcaseBusiness size={16} /> LinkedIn</a><a className="button secondary" href={profile.github} target="_blank" rel="noreferrer"><GitBranch size={16} /> GitHub</a><a className="button secondary" href={profile.cv} download>Download CV</a></div>
         </section>
       </main>
 
-      <footer id="contact" className="site-footer">
-        <div>
-          <p className="section-kicker">Contact</p>
-          <h2>Let’s build intelligent systems together.</h2>
-        </div>
-        <div className="footer-links">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </footer>
+      <footer className="site-footer"><div><strong>Omkar Mayekar</strong><p>Computer Vision · 3D Reconstruction · Robotics</p></div><div className="footer-links"><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={`mailto:${profile.email}`}>Email</a><span>Built with React and GitHub Pages · {new Date().getFullYear()}</span></div></footer>
+      {activeProject && caseStudyProject && <ProjectModal project={caseStudyProject} onClose={() => setActiveProject(null)} />}
     </div>
   )
 }

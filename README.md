@@ -22,9 +22,9 @@ npm run preview
 
 This project is configured for GitHub Pages through the workflow in `.github/workflows/deploy.yml`.
 
-1. Push the project to a GitHub repository.
+1. Push the project to `https://github.com/omk181-lab/portfolio`.
 2. Enable GitHub Pages in the repository settings.
 3. Use the default `GitHub Actions` source.
 4. Push to the `main` branch to trigger deployment.
 
-The site uses a relative base path for static hosting compatibility.
+The site uses a relative base path for static hosting compatibility. The deployed URL is https://omk181-lab.github.io/portfolio/.
