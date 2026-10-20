@@ -32,7 +32,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div><h3>Dataset setup</h3><p>LLFF images at 100x100 resolution and Mip-NeRF 360 images at 150x100 resolution.</p></div>
           <div><h3>Compared methods</h3><p>RealBasicVSR, SwinIR, Stable Diffusion X4, and an HRDS baseline.</p></div>
           <div><h3>Quantitative results</h3><ul className="result-list"><li>SDx4 + 3DGS: PSNR 32.96 on LLFF.</li><li>RealBasicVSR + 3DGS: PSNR 32.49 on Mip-NeRF 360.</li></ul></div>
-          <div><h3>Qualitative observations</h3><p>Pose estimation can be recovered from enhanced inputs while the reconstruction remains trained on the original low-resolution imagery. These are project-specific benchmark observations, not general guarantees.</p></div>
+          <div><h3>Qualitative observations</h3><ul className="result-list">{project.observations?.map((observation) => <li key={observation}>{observation}</li>)}</ul></div>
         </div>
         <div className="modal-footer"><h3>Limitations and future directions</h3><p>Future work is limited to testing noisy real-world drone footage, applying image denoising before COLMAP, and exploring low-bandwidth robotics applications.</p></div>
       </section>

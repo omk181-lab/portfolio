@@ -1,4 +1,9 @@
 import type { Project } from './types'
+import projectThumbnail from '../../moving_object_seg/project_thumbnail.gif'
+import fernVideo from '../../Splatting_the_unsplattable/novel_views_20fps_fern.mp4'
+import hornsVideo from '../../Splatting_the_unsplattable/novel_views_20fps_horns.mp4'
+import orchidsVideo from '../../Splatting_the_unsplattable/novel_views_20fps_orchids.mp4'
+import trexVideo from '../../Splatting_the_unsplattable/novel_views_20fps_trex.mp4'
 
 export const projects: Project[] = [
   {
@@ -6,9 +11,11 @@ export const projects: Project[] = [
     title: 'Splatting the Unsplattable: 3D Gaussian Splatting from Low-Resolution Images',
     category: '3D Reconstruction / Neural Rendering / Super-Resolution',
     summary: 'An experimental pipeline for making 3D Gaussian Splatting work when original image inputs are too low-resolution for reliable camera-pose estimation.',
+    videos: [fernVideo, hornsVideo, orchidsVideo, trexVideo],
     technologies: ['3D Gaussian Splatting', 'COLMAP', 'RealBasicVSR', 'SwinIR', 'Stable Diffusion X4', 'HRDS'],
     contribution: 'Uses enhanced images for pose estimation while training 3DGS with the original low-resolution images.',
     details: ['LLFF at 100x100 resolution', 'Mip-NeRF 360 at 150x100 resolution', 'SDx4 + 3DGS: PSNR 32.96 on LLFF', 'RealBasicVSR + 3DGS: PSNR 32.49 on Mip-NeRF 360'],
+    observations: ['On LLFF scenes, SDx4 produced sharp, coherent 3D geometry.', 'On complex tractor and garden scenes from Mip-NeRF 360, RealBasicVSR was perceptually sharper and closer to ground truth than SDx4 and SwinIR.', 'The project attributes the Mip-NeRF 360 advantage to the temporal and spatial consistency of video upscalers.'],
     externalUrl: 'https://rajolu-vinay77.github.io/3DGS-Project-Blog/',
     codeUrl: 'https://github.com/omkar55-bot/Improving-3D-Gaussian-Splatting-for-Low-Resolution-Image-Inputs',
     accent: 'cyan',
@@ -19,8 +26,8 @@ export const projects: Project[] = [
     title: 'Moving Object Segmentation',
     category: 'Computer Vision / Video Understanding / Segmentation',
     summary: 'A computer vision project focused on identifying and segmenting moving objects in video sequences.',
+    thumbnail: projectThumbnail,
     technologies: ['Computer vision', 'Video sequences', 'Segmentation'],
-    contribution: 'Explores the visual separation of moving objects from their surrounding scene.',
     externalUrl: 'https://medium.com/@omkarmayekar555/moving-object-segmentation-2a42ab894651',
     accent: 'green',
   },

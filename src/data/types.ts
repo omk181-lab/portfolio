@@ -12,9 +12,12 @@ export type Project = {
   title: string
   category: string
   summary: string
+  thumbnail?: string
+  videos?: string[]
   technologies: string[]
-  contribution: string
+  contribution?: string
   details?: string[]
+  observations?: string[]
   externalUrl?: string
   codeUrl?: string
   accent: 'cyan' | 'violet' | 'green'
