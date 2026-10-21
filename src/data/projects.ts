@@ -42,7 +42,7 @@ export const projects: Project[] = [
     category: 'View Synthesis / Diffusion Models / Geometry',
     summary: 'An end-to-end research project developing a geometry-guided latent diffusion framework for synthesizing cross-view images of ground vehicles.',
     video: viewTranslationVideo,
-    videoAspectRatio: '2406 / 1080',
+    videoAspectRatio: '1836 / 690',
     technologies: ['Latent diffusion', 'Geometric constraints', 'High-resolution synthesis'],
     contribution: 'Authored and led the research from ideation through manuscript completion, including publication-quality architecture figures.',
     accent: 'violet',
