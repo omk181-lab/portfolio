@@ -4,6 +4,11 @@ import fernVideo from '../../Splatting_the_unsplattable/novel_views_20fps_fern.m
 import hornsVideo from '../../Splatting_the_unsplattable/novel_views_20fps_horns.mp4'
 import orchidsVideo from '../../Splatting_the_unsplattable/novel_views_20fps_orchids.mp4'
 import trexVideo from '../../Splatting_the_unsplattable/novel_views_20fps_trex.mp4'
+import viewTranslationVideo from '../../view_translation/view_translation_thumbnail.mp4'
+import generalizableNeRFVideo from '../../generalizable_neural_radiance_field/generalizable_neural_radiance.mp4'
+import roboticsVideoOne from '../../robotics/rpbotics_thumbnail1.mp4'
+import roboticsVideoTwo from '../../robotics/rpbotics_thumbnail2.mp4'
+import roboticsVideoThree from '../../robotics/rpbotics_thumbnail3_h264.mp4'
 
 export const projects: Project[] = [
   {
@@ -36,6 +41,8 @@ export const projects: Project[] = [
     title: 'View Translation: Geometry-Guided Latent Diffusion for Cross-View Image Synthesis',
     category: 'View Synthesis / Diffusion Models / Geometry',
     summary: 'An end-to-end research project developing a geometry-guided latent diffusion framework for synthesizing cross-view images of ground vehicles.',
+    video: viewTranslationVideo,
+    videoAspectRatio: '2406 / 1080',
     technologies: ['Latent diffusion', 'Geometric constraints', 'High-resolution synthesis'],
     contribution: 'Authored and led the research from ideation through manuscript completion, including publication-quality architecture figures.',
     accent: 'violet',
@@ -45,6 +52,8 @@ export const projects: Project[] = [
     title: 'Generalizable NeRF Super-Resolution',
     category: 'Neural Rendering / 3D Reconstruction / Benchmarking',
     summary: 'An experimental study comparing neural rendering and 3D reconstruction methods for super-resolution across real-world and synthetic scenes.',
+    video: generalizableNeRFVideo,
+    videoAspectRatio: '2446 / 1292',
     technologies: ['NeRF-SR', '3DGS', 'Instant-NGP', 'TensoRF', 'GeFu', 'GDB-NeRF'],
     contribution: 'Evaluates reconstruction quality, super-resolution performance, and cross-scene generalization.',
     accent: 'cyan',
@@ -54,6 +63,9 @@ export const projects: Project[] = [
     title: '3D Collision Detection for Robot Manipulation',
     category: 'Robotics / 3D Scene Understanding / Robot Learning',
     summary: 'An applied robotics project exploring spatial perception and collision-aware manipulation with real-world robot arms and vision-language-action policies.',
+    videos: [roboticsVideoOne, roboticsVideoTwo, roboticsVideoThree],
+    videoLayout: 'two-plus-one',
+    videoAspectRatio: '16 / 15',
     technologies: ['ACT', 'SmolVLA', 'GrootN1.5', 'VGGT', 'Depth Anything 3', 'SO101'],
     contribution: 'Investigates spatial context and collision-aware action planning while implementing multiple policies on a real SO101 robot arm.',
     accent: 'green',

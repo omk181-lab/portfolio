@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { ArrowUpRight, BookOpen, GitBranch } from 'lucide-react'
 import type { Project } from '../data/types'
 
@@ -7,10 +8,30 @@ type ProjectCardProps = {
 }
 
 export function ProjectCard({ project, onCaseStudy }: ProjectCardProps) {
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([])
+
+  useEffect(() => {
+    if (!project.videos) return
+
+    const videos = videoRefs.current.filter((video): video is HTMLVideoElement => video !== null)
+    const startVideosTogether = () => {
+      if (videos.length !== project.videos?.length || videos.some((video) => video.readyState < 2)) return
+      videos.forEach((video) => {
+        video.currentTime = 0
+        void video.play()
+      })
+    }
+
+    videos.forEach((video) => video.addEventListener('loadeddata', startVideosTogether))
+    startVideosTogether()
+
+    return () => videos.forEach((video) => video.removeEventListener('loadeddata', startVideosTogether))
+  }, [project.videos])
+
   return (
     <article className={`project-card project-${project.accent} ${project.featured ? 'featured' : ''}`}>
-      <div className="project-visual" aria-hidden="true">
-        {project.videos ? <div className="project-thumbnail-grid">{project.videos.map((video) => <video className="project-thumbnail-video" key={video} src={video} autoPlay loop muted playsInline />)}</div> : project.thumbnail ? <img className="project-thumbnail" src={project.thumbnail} alt="" /> : <>
+      <div className="project-visual" style={project.videoAspectRatio ? { aspectRatio: project.videoAspectRatio } : undefined} aria-hidden="true">
+        {project.videos ? <div className={`project-thumbnail-grid ${project.videoLayout ? `video-layout-${project.videoLayout}` : ''}`}>{project.videos.map((video, index) => <video className="project-thumbnail-video" key={video} src={video} ref={(element) => { videoRefs.current[index] = element }} loop muted playsInline />)}</div> : project.video ? <video className="project-thumbnail project-single-video" src={project.video} autoPlay loop muted playsInline /> : project.thumbnail ? <img className="project-thumbnail" src={project.thumbnail} alt="" /> : <>
           <span className="visual-code">{project.id === '3dgs-low-resolution' ? 'LR → SR → POSE → SPLAT' : project.category.split(' / ')[0].toUpperCase()}</span>
           <span className="visual-line" />
           <span className="visual-dot dot-a" />

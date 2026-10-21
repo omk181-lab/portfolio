@@ -14,6 +14,9 @@ export type Project = {
   summary: string
   thumbnail?: string
   videos?: string[]
+  videoLayout?: 'two-plus-one'
+  video?: string
+  videoAspectRatio?: string
   technologies: string[]
   contribution?: string
   details?: string[]
