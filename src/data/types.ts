@@ -21,6 +21,9 @@ export type Project = {
   contribution?: string
   details?: string[]
   observations?: string[]
+  paperUrl?: string
+  huggingFaceUrl?: string
+  presentationUrl?: string
   externalUrl?: string
   codeUrl?: string
   accent: 'cyan' | 'violet' | 'green'

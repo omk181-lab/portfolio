@@ -50,6 +50,9 @@ export function ProjectCard({ project, onCaseStudy }: ProjectCardProps) {
         {project.details && <ul className="result-list">{project.details.map((detail) => <li key={detail}>{detail}</li>)}</ul>}
         <div className="project-actions">
           {onCaseStudy && <button className="text-button" type="button" onClick={onCaseStudy}><BookOpen size={15} /> Read case study</button>}
+          {project.paperUrl && <a className="text-button" href={project.paperUrl} target="_blank" rel="noreferrer">Read paper <ArrowUpRight size={15} /></a>}
+          {project.huggingFaceUrl && <a className="text-button" href={project.huggingFaceUrl} target="_blank" rel="noreferrer">Hugging Face <ArrowUpRight size={15} /></a>}
+          {project.presentationUrl && <a className="text-button" href={project.presentationUrl} target="_blank" rel="noreferrer">View presentation <ArrowUpRight size={15} /></a>}
           {project.externalUrl && <a className="text-button" href={project.externalUrl} target="_blank" rel="noreferrer">Project link <ArrowUpRight size={15} /></a>}
           {project.codeUrl && <a className="text-button" href={project.codeUrl} target="_blank" rel="noreferrer"><GitBranch size={15} /> View code</a>}
         </div>

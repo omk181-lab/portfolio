@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, BriefcaseBusiness, GitBranch, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Bot, BriefcaseBusiness, GitBranch, Mail, MapPin } from 'lucide-react'
 import './App.css'
 import { HeroVisual } from './components/HeroVisual'
 import { Navbar } from './components/Navbar'
@@ -8,7 +8,6 @@ import { ProjectModal } from './components/ProjectModal'
 import { ResearchAreas } from './components/ResearchAreas'
 import { ScrollProgress } from './components/ScrollProgress'
 import { Timeline } from './components/Timeline'
-import { Workflow } from './components/Workflow'
 import { projects } from './data/projects'
 import { researchAreas } from './data/research'
 import type { Project } from './data/types'
@@ -18,6 +17,7 @@ const profile = {
   email: 'omayeka@clemson.edu',
   linkedin: 'https://www.linkedin.com/in/omkar-mayekar-b28628202/',
   github: 'https://github.com/omkar55-bot',
+  huggingFace: 'https://huggingface.co/omkarmayekar555',
   cv: './Omkar_Mayekar_CV.pdf',
 }
 
@@ -55,6 +55,7 @@ function App() {
             <div className="hero-links" aria-label="Profile links">
               <a href={profile.github} target="_blank" rel="noreferrer"><GitBranch size={16} /> GitHub</a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer"><BriefcaseBusiness size={16} /> LinkedIn</a>
+              <a href={profile.huggingFace} target="_blank" rel="noreferrer"><Bot size={16} /> Hugging Face</a>
               <a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a>
             </div>
           </div>
@@ -63,7 +64,7 @@ function App() {
 
         <section id="about" className="section-wrap about-section" aria-labelledby="about-title">
           <div className="section-heading"><p className="eyebrow">01 / About</p><h2 id="about-title">Research-driven engineering for uncertain worlds.</h2></div>
-          <div className="about-copy"><p>Omkar Mayekar is a computer vision and robotics researcher with experience in neural rendering, 3D scene understanding, view synthesis, robot manipulation, and vision-language-action systems. His work focuses on making visual intelligence more reliable in real-world environments, especially when images are low-resolution, geometry is uncertain, or robots must reason about spatial relationships.</p><p>He focuses on the entire research loop: building complete experimental pipelines, benchmarking methods on real-world and synthetic datasets, studying failure cases, and connecting computer vision research to robot action and manipulation.</p><div className="location-line"><MapPin size={16} /> Clemson, South Carolina, USA</div></div>
+          <div className="about-copy"><p>I am a computer vision and robotics researcher with a Master's Degree in Computer Science from Clemson University, South Carolina, USA. I have experience in neural rendering, 3D scene understanding, view synthesis, robot manipulation, and vision-language-action systems. My work focuses on making visual intelligence more reliable in real-world environments, especially when images are low-resolution, geometry is uncertain, or robots must reason about spatial relationships.</p><p>I focus on the entire research loop: building complete experimental pipelines, benchmarking methods on real-world and synthetic datasets, studying failure cases, and connecting computer vision research to robot action and manipulation.</p><div className="location-line"><MapPin size={16} /> Thane, Maharashtra, India</div></div>
         </section>
 
         <section id="research" className="section-wrap" aria-labelledby="research-title">
@@ -89,9 +90,12 @@ function App() {
           <div className="skills-grid">{skillGroups.map((group) => <article className="skill-group" key={group.title}><h3>{group.title}</h3><ul className="chip-list">{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul></article>)}</div>
         </section>
 
-        <section className="section-wrap workflow-section" aria-labelledby="workflow-title">
-          <div className="section-heading"><p className="eyebrow">06 / Research workflow</p><h2 id="workflow-title">From question to useful action.</h2><p className="workflow-intro">I focus on the entire research loop: understanding the failure mode, implementing a reliable experimental pipeline, measuring performance, studying qualitative behavior, and translating visual understanding into useful robotic action.</p></div>
-          <Workflow />
+        <section className="section-wrap publications-section" aria-labelledby="publications-title">
+          <div className="section-heading"><p className="eyebrow">06 / Publications</p><h2 id="publications-title">Research in the record.</h2><p className="workflow-intro">Selected publications on geometry-guided image synthesis and generalizable neural rendering.</p></div>
+          <div className="publication-list">
+            <article className="publication-item"><span>01</span><div><p className="publication-type">Published paper</p><h3><a href="https://saemobilus.sae.org/papers/view-translation-geometry-guided-latent-diffusion-cross-view-image-synthesis-ground-vehicles-2026-01-7501" target="_blank" rel="noreferrer">View Translation: Geometry-Guided Latent Diffusion for Cross-View Image Synthesis of Ground Vehicles <ArrowUpRight size={16} /></a></h3></div></article>
+            <article className="publication-item"><span>02</span><div><p className="publication-type">arXiv paper</p><h3><a href="https://arxiv.org/abs/2603.20128" target="_blank" rel="noreferrer">Generalizable Neural Radiance Field Super-Resolution <ArrowUpRight size={16} /></a></h3></div></article>
+          </div>
         </section>
 
         <section id="contact" className="contact-section section-wrap" aria-labelledby="contact-title">
