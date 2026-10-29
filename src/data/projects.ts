@@ -34,6 +34,7 @@ export const projects: Project[] = [
     thumbnail: projectThumbnail,
     technologies: ['Computer vision', 'Video sequences', 'Segmentation'],
     externalUrl: 'https://medium.com/@omkarmayekar555/moving-object-segmentation-2a42ab894651',
+    codeUrl: 'https://github.com/omk181-lab/Moving-Object-Segmentation',
     accent: 'green',
   },
   {

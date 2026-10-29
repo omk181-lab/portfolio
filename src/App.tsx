@@ -8,6 +8,7 @@ import { ProjectModal } from './components/ProjectModal'
 import { ResearchAreas } from './components/ResearchAreas'
 import { ScrollProgress } from './components/ScrollProgress'
 import { Timeline } from './components/Timeline'
+import profilePhoto from '../profile_pic/profile.jpg'
 import { projects } from './data/projects'
 import { researchAreas } from './data/research'
 import type { Project } from './data/types'
@@ -17,6 +18,7 @@ const profile = {
   email: 'omayeka@clemson.edu',
   linkedin: 'https://www.linkedin.com/in/omkar-mayekar-b28628202/',
   github: 'https://github.com/omkar55-bot',
+  githubLab: 'https://github.com/omk181-lab',
   huggingFace: 'https://huggingface.co/omkarmayekar555',
   cv: './Omkar_Mayekar_CV.pdf',
 }
@@ -47,13 +49,12 @@ function App() {
             <p className="status-pill"><span className="status-dot" /> Computer Vision · 3D Reconstruction · Robotics</p>
             <p className="eyebrow">Researching visual intelligence for embodied systems</p>
             <h1 id="hero-title">Building Visual Intelligence for <em>3D Worlds</em> and Robots</h1>
-            <p className="hero-lede">I am Omkar Mayekar, a computer vision and robotics researcher working on 3D reconstruction, neural rendering, view synthesis, and spatial reasoning for intelligent robots.</p>
             <div className="hero-actions">
               <a className="button primary" href="#research">View research <ArrowUpRight size={16} /></a>
               <a className="button secondary" href={profile.cv} download>Download CV</a>
             </div>
             <div className="hero-links" aria-label="Profile links">
-              <a href={profile.github} target="_blank" rel="noreferrer"><GitBranch size={16} /> GitHub</a>
+              <div className="github-menu"><a className="github-trigger" href={profile.github} target="_blank" rel="noreferrer"><GitBranch size={16} /> GitHub</a><div className="github-options" role="menu"><a href={profile.github} target="_blank" rel="noreferrer" role="menuitem">@omkar55-bot</a><a href={profile.githubLab} target="_blank" rel="noreferrer" role="menuitem">@omk181-lab</a></div></div>
               <a href={profile.linkedin} target="_blank" rel="noreferrer"><BriefcaseBusiness size={16} /> LinkedIn</a>
               <a href={profile.huggingFace} target="_blank" rel="noreferrer"><Bot size={16} /> Hugging Face</a>
               <a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a>
@@ -62,8 +63,8 @@ function App() {
           <HeroVisual />
         </section>
 
-        <section id="about" className="section-wrap about-section" aria-labelledby="about-title">
-          <div className="section-heading"><p className="eyebrow">01 / About</p><h2 id="about-title">Research-driven engineering for uncertain worlds.</h2></div>
+        <section id="about" className="section-wrap about-section" aria-label="About">
+          <div className="about-photo"><img src={profilePhoto} alt="Omkar Mayekar" /></div>
           <div className="about-copy"><p>I am a computer vision and robotics researcher with a Master's Degree in Computer Science from Clemson University, South Carolina, USA. I have experience in neural rendering, 3D scene understanding, view synthesis, robot manipulation, and vision-language-action systems. My work focuses on making visual intelligence more reliable in real-world environments, especially when images are low-resolution, geometry is uncertain, or robots must reason about spatial relationships.</p><p>I focus on the entire research loop: building complete experimental pipelines, benchmarking methods on real-world and synthetic datasets, studying failure cases, and connecting computer vision research to robot action and manipulation.</p><div className="location-line"><MapPin size={16} /> Thane, Maharashtra, India</div></div>
         </section>
 
